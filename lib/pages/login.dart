@@ -1,153 +1,142 @@
 import 'package:app27_blog/pages/signup.dart';
+import 'package:app27_blog/utils/myslide.dart';
 import 'package:flutter/material.dart';
 
-class LoginSignup extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _LoginSignupState createState() => _LoginSignupState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginSignupState extends State<LoginSignup> {
-  final _formKey = GlobalKey<FormState>();
+class _LoginPageState extends State<LoginPage> {
+  final _fromkey = GlobalKey<FormState>();
 
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            "assets/back.jpg",
-            height: double.infinity,
-            fit: BoxFit.fill,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 70.0, left: 20.0, right: 20.0),
-            child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Stack(
+          children: <Widget>[
+            Image(
+              image: AssetImage("assets/login.jpg"),
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 90.0, left: 30.0, right: 30.0),
               child: Container(
-                color: Colors.white.withOpacity(0.6),
-                child: Material(
-                  elevation: 30.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            height: 100.0,
-                            width: 150.0,
-                            child: Image(
-                              image: AssetImage("assets/logo.png"),
-                              fit: BoxFit.fill,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      " Welcome",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 42.0,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                    Text(
+                      "  Back.",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 42.0,
+                        letterSpacing: 2.0,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 70.0,),
+                      child: Form(
+                        key: _fromkey,
+                        child: Column(
+                          children: <Widget>[
+                            //email field here
+                            TextFormField(
+                              controller: _emailController,
+                              decoration: InputDecoration(
+                                hintText: "Email",
+                                hintStyle: TextStyle( fontSize: 20.0),
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            //password field here.
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            TextFormField(
+                              controller: _passwordController,
+                              decoration: InputDecoration(
+                                hintText: "Password",
+                                hintStyle: TextStyle(fontSize: 20.0),
+                              ),
+                              keyboardType: TextInputType.text,
+                              obscureText: true,
+                            ),
+                            SizedBox(height: 30.0,),
+                            //Signin field here.
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Text(
+                                  "Sign in",
+                                  style: TextStyle(
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                FloatingActionButton(
+                                  backgroundColor: Color(0xff515862),
+                                  foregroundColor: Colors.white,
+                                  onPressed: (){},
+                                  child: Icon(Icons.arrow_forward, size: 40.0,),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    //signup and forgot password
+                    SizedBox(height: 60.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: (){
+                            Route route = MySlide(builder: (context) => SignUpPage());
+                            Navigator.push(context, route);
+                          },
+                          child: Text(
+                            "Sign up",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
-                        ],
-                      ),
-                      Form(
-                          key: _formKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              //email field here 
-                              Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    labelText: "Email",
-                                    hintText: "name@example.com",
-                                  ),
-                                  keyboardType: TextInputType.emailAddress,
-                                  controller: _emailTextController,
-                                  validator: (value){
-                                    if(value.isEmpty){
-                                      Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                      RegExp regExp = RegExp(pattern);
-                                      if(!regExp.hasMatch(value)){
-                                        return "please make sure  your email address is valid ";
-                                      }
-                                      return null;
-                                    }
-                                  },
-                                ),
-                              ),
-                              // password field here 
-                              Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    labelText: "Password",
-                                    hintText: "1234567",
-                                  ),
-                                  keyboardType: TextInputType.text,
-                                  obscureText: true,
-                                  controller: _passwordTextController,
-                                  validator: (value){
-                                    if(value.isEmpty){
-                                      return "Password is required to login ";
-                                    } else if(value.length < 6){
-                                      return "Password is required to be atleast 6";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20.0,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: MaterialButton(
-                                  color: Colors.black,
-                                  onPressed: () {},
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        "Sign In",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 22.0),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.white,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text("New user? "),
-                                      Text(
-                                        "Create account",
-                                        style: TextStyle(
-                                            color:  Theme.of(context).primaryColor,
-                                            fontStyle: FontStyle.italic,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 10.0,)
-                            ],
-                          )),
-                    ],
-                  ),
+                        ),
+                         InkWell(
+                          onTap: (){},
+                          child: Text(
+                            "Forgot Password?",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

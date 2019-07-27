@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "99271190422",
+    "firebase_url": "https://billawarbeauty.firebaseio.com",
+    "project_id": "billawarbeauty",
+    "storage_bucket": "billawarbeauty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99271190422:android:124e34eb6e6c3b73",
+        "android_client_info": {
+          "package_name": "com.example.app27_blog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99271190422-cb1fg4ehauefqpnvmrjf2rucl526rlkl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app27_blog",
+            "certificate_hash": "29a8c3c032d520f2644c709cfcadc263bb29c496"
+          }
+        },
+        {
+          "client_id": "99271190422-dbpjhn9dqljfj9jaomnrq7dsb7h7htke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMEsZqeyc7A8SJNrUreQWGMBw_m4pQoR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99271190422-dbpjhn9dqljfj9jaomnrq7dsb7h7htke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
